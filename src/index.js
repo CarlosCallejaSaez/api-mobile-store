@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const { connectionDB } = require('./config/db.js');
+const mainRouter = require('./routes/index.js');
 
 app.use(express.json());
 
-app.use('/api', (req,res) => {res.send('Welcome to Mobile API');});
+app.use('/api', mainRouter);
 
 
 
