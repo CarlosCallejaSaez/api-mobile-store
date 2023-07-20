@@ -1,12 +1,24 @@
 const Mobile = require('../models/mobile_model');
 
+
 const getAllMobiles = async (req, res, next) => {
-  res.status(200).send("aa");
+  try {
+    const mobiles = await Mobile.find().populate('manufacturer');
+    return res.status(200).json({data: mobiles});
+  } catch (error) {
+    return res.status(400).json({ data: `Error getting all the mobiles : ${error}` });
+  }
   
 };
 
 const getMobileById = async (req, res, next) => {
-  res.status(200).send("aa")
+  try {
+    id = req.params.id
+    const mobile = await Mobile.findById(id).populate('manufacturer');
+    return res.status(200).json({data: mobile});
+  } catch (error) {
+    return res.status(400).json({ data: `Mobile with id ${id} not found, error : ${error}` });
+  }
   };
 
   const createMobile = async (req, res, next) => {
