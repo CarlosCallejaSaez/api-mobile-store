@@ -1,5 +1,11 @@
 const express = require('express');
+const favicon = require('serve-favicon');
+const path = require('path');
+
 const app = express();
+
+const faviconPath = path.join(__dirname, 'public', 'mobile.ico');
+app.use(favicon(faviconPath));
 const { connectionDB } = require('./config/db.js');
 const mainRouter = require('./routes/index.js');
 
